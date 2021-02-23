@@ -1,0 +1,15 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=USDSports Daemon SNAP
+Comment=testnet
+GenericName=USDSports Digital Currency Daemon Client testnet network
+Exec=usdsports-core.daemon-testnet %u
+Terminal=true
+Type=Application
+Icon=${SNAP}/share/pixmaps/usdsports_testnet.png
+MimeType=x-scheme-handler/usdsp;
+Categories=X-Office;X-Finance;
+Keywords=internet;usdsports;zusdsp;core;wallet;daemon;testnet;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
+Version=1.0

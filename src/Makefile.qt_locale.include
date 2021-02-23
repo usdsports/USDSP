@@ -1,0 +1,15 @@
+QT_TS = \
+  qt/locale/usdsports_de.ts \
+  qt/locale/usdsports_en.ts \
+  qt/locale/usdsports_en_US.ts \
+  qt/locale/usdsports_es.ts \
+  qt/locale/usdsports_es_ES.ts \
+  qt/locale/usdsports_fr_FR.ts \
+  qt/locale/usdsports_hr_HR.ts \
+  qt/locale/usdsports_it.ts \
+  qt/locale/usdsports_ko_KR.ts \
+  qt/locale/usdsports_nl.ts \
+  qt/locale/usdsports_pl.ts \
+  qt/locale/usdsports_ru.ts \
+  qt/locale/usdsports_tr.ts \
+  qt/locale/usdsports_zh_CN.ts

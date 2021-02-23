@@ -1,0 +1,33 @@
+# /etc/conf.d/usdsportsd: config file for /etc/init.d/usdsportsd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/usdsports/usdsports.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/usdsportsd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/usdsportsd.pid"
+
+# Where to write usdsportsd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/usdsportsd"
+
+# User and group to own usdsportsd process
+#BITCOIND_USER="usdsports"
+#BITCOIND_GROUP="usdsports"
+
+# Path to usdsportsd executable
+#BITCOIND_BIN="/usr/bin/usdsportsd"
+
+# Nice value to run usdsportsd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#BITCOIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for bitcoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+BITCOIND_SIGTERM_TIMEOUT=60

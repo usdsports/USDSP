@@ -1,0 +1,710 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/usdsports-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# usdsports qt core #
+include Makefile.qt_locale.include
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/usdsports/forms/loadingdialog.ui \
+  qt/usdsports/forms/snackbar.ui \
+  qt/usdsports/forms/navmenuwidget.ui \
+  qt/usdsports/forms/lockunlock.ui \
+  qt/usdsports/forms/expandablebutton.ui \
+  qt/usdsports/forms/receivedialog.ui \
+  qt/usdsports/forms/topbar.ui \
+  qt/usdsports/forms/txrow.ui \
+  qt/usdsports/forms/dashboardwidget.ui \
+  qt/usdsports/forms/addresslabelrow.ui \
+  qt/usdsports/forms/contactdropdownrow.ui \
+  qt/usdsports/forms/mninfodialog.ui \
+  qt/usdsports/forms/optionbutton.ui \
+  qt/usdsports/forms/masternodewizarddialog.ui \
+  qt/usdsports/forms/mnrow.ui \
+  qt/usdsports/forms/masternodeswidget.ui \
+  qt/usdsports/forms/myaddressrow.ui \
+  qt/usdsports/forms/csrow.ui \
+  qt/usdsports/forms/sendchangeaddressdialog.ui \
+  qt/usdsports/forms/sendconfirmdialog.ui \
+  qt/usdsports/forms/sendcustomfeedialog.ui \
+  qt/usdsports/forms/sendchangeaddressdialog.ui \
+  qt/usdsports/forms/sendmultirow.ui \
+  qt/usdsports/forms/send.ui \
+  qt/usdsports/forms/addnewaddressdialog.ui \
+  qt/usdsports/forms/addnewcontactdialog.ui \
+  qt/usdsports/forms/requestdialog.ui \
+  qt/usdsports/forms/receivewidget.ui \
+  qt/usdsports/forms/tooltipmenu.ui \
+  qt/usdsports/forms/addresseswidget.ui \
+  qt/usdsports/forms/defaultdialog.ui \
+  qt/usdsports/forms/coldstakingwidget.ui \
+  qt/usdsports/settings/forms/settingsbackupwallet.ui \
+  qt/usdsports/settings/forms/settingsexportcsv.ui \
+  qt/usdsports/settings/forms/settingsbittoolwidget.ui \
+  qt/usdsports/settings/forms/settingsconsolewidget.ui \
+  qt/usdsports/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/usdsports/settings/forms/settingsfaqwidget.ui \
+  qt/usdsports/settings/forms/settingsinformationwidget.ui \
+  qt/usdsports/settings/forms/settingsmainoptionswidget.ui \
+  qt/usdsports/settings/forms/settingsmultisenddialog.ui \
+  qt/usdsports/settings/forms/settingsmultisendwidget.ui \
+  qt/usdsports/settings/forms/settingssignmessagewidgets.ui \
+  qt/usdsports/settings/forms/settingswalletoptionswidget.ui \
+  qt/usdsports/settings/forms/settingswalletrepairwidget.ui \
+  qt/usdsports/settings/forms/settingswidget.ui \
+  qt/usdsports/forms/welcomecontentwidget.ui \
+  qt/usdsports/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/usdsports/moc_usdsportsgui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/usdsports/moc_loadingdialog.cpp \
+  qt/usdsports/moc_pwidget.cpp \
+  qt/usdsports/moc_focuseddialog.cpp \
+  qt/usdsports/moc_snackbar.cpp \
+  qt/usdsports/moc_navmenuwidget.cpp \
+  qt/usdsports/moc_lockunlock.cpp \
+  qt/usdsports/moc_expandablebutton.cpp \
+  qt/usdsports/moc_furabstractlistitemdelegate.cpp \
+  qt/usdsports/moc_receivedialog.cpp \
+  qt/usdsports/moc_pfborderimage.cpp \
+  qt/usdsports/moc_topbar.cpp \
+  qt/usdsports/moc_txrow.cpp \
+  qt/usdsports/moc_dashboardwidget.cpp \
+  qt/usdsports/moc_addresslabelrow.cpp \
+  qt/usdsports/moc_contactdropdownrow.cpp \
+  qt/usdsports/moc_mninfodialog.cpp \
+  qt/usdsports/moc_optionbutton.cpp \
+  qt/usdsports/moc_coldstakingmodel.cpp \
+  qt/usdsports/moc_mnmodel.cpp \
+  qt/usdsports/moc_masternodewizarddialog.cpp \
+  qt/usdsports/moc_mnrow.cpp \
+  qt/usdsports/moc_masternodeswidget.cpp \
+  qt/usdsports/moc_myaddressrow.cpp \
+  qt/usdsports/moc_csrow.cpp \
+  qt/usdsports/moc_contactsdropdown.cpp \
+  qt/usdsports/moc_sendchangeaddressdialog.cpp \
+  qt/usdsports/moc_sendconfirmdialog.cpp \
+  qt/usdsports/moc_sendcustomfeedialog.cpp \
+  qt/usdsports/moc_sendchangeaddressdialog.cpp \
+  qt/usdsports/moc_sendmultirow.cpp \
+  qt/usdsports/moc_send.cpp \
+  qt/usdsports/moc_addnewaddressdialog.cpp \
+  qt/usdsports/moc_addnewcontactdialog.cpp \
+  qt/usdsports/moc_requestdialog.cpp \
+  qt/usdsports/moc_receivewidget.cpp \
+  qt/usdsports/moc_tooltipmenu.cpp \
+  qt/usdsports/moc_addresseswidget.cpp \
+  qt/usdsports/moc_defaultdialog.cpp \
+  qt/usdsports/moc_coldstakingwidget.cpp \
+  qt/usdsports/settings/moc_settingsbackupwallet.cpp \
+  qt/usdsports/settings/moc_settingsexportcsv.cpp \
+  qt/usdsports/settings/moc_settingsbittoolwidget.cpp \
+  qt/usdsports/settings/moc_settingsconsolewidget.cpp \
+  qt/usdsports/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/usdsports/settings/moc_settingsfaqwidget.cpp \
+  qt/usdsports/settings/moc_settingsinformationwidget.cpp \
+  qt/usdsports/settings/moc_settingsmainoptionswidget.cpp \
+  qt/usdsports/settings/moc_settingsmultisenddialog.cpp \
+  qt/usdsports/settings/moc_settingsmultisendwidget.cpp \
+  qt/usdsports/settings/moc_settingssignmessagewidgets.cpp \
+  qt/usdsports/settings/moc_settingswalletoptionswidget.cpp \
+  qt/usdsports/settings/moc_settingswalletrepairwidget.cpp \
+  qt/usdsports/settings/moc_settingswidget.cpp \
+  qt/usdsports/moc_welcomecontentwidget.cpp \
+  qt/usdsports/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/usdsports.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/usdsports/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_usdsports.cpp
+QT_QRC = qt/usdsports.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_usdsports_locale.cpp
+QT_QRC_LOCALE = qt/usdsports_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/usdsports/usdsportsgui.h \
+  qt/bitcoinunits.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/trafficgraphwidget.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/usdsports/prunnable.h \
+  qt/usdsports/pfborderimage.h \
+  qt/usdsports/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/usdsports/pwidget.h \
+  qt/usdsports/focuseddialog.h \
+  qt/usdsports/guitransactionsutils.h \
+  qt/usdsports/snackbar.h \
+  qt/usdsports/navmenuwidget.h \
+  qt/usdsports/lockunlock.h \
+  qt/usdsports/receivedialog.h \
+  qt/usdsports/furlistrow.h \
+  qt/usdsports/furabstractlistitemdelegate.h \
+  qt/usdsports/txviewholder.h \
+  qt/usdsports/qtutils.h \
+  qt/usdsports/expandablebutton.h \
+  qt/usdsports/topbar.h \
+  qt/usdsports/txrow.h \
+  qt/usdsports/addressholder.h \
+  qt/usdsports/addressfilterproxymodel.h \
+  qt/usdsports/dashboardwidget.h \
+  qt/usdsports/addresslabelrow.h \
+  qt/usdsports/contactdropdownrow.h \
+  qt/usdsports/mninfodialog.h \
+  qt/usdsports/optionbutton.h \
+  qt/usdsports/coldstakingmodel.h \
+  qt/usdsports/mnmodel.h \
+  qt/usdsports/masternodewizarddialog.h \
+  qt/usdsports/mnrow.h \
+  qt/usdsports/masternodeswidget.h \
+  qt/usdsports/myaddressrow.h \
+  qt/usdsports/csrow.h \
+  qt/usdsports/contactsdropdown.h \
+  qt/usdsports/sendchangeaddressdialog.h \
+  qt/usdsports/sendconfirmdialog.h \
+  qt/usdsports/sendcustomfeedialog.h \
+  qt/usdsports/sendchangeaddressdialog.h \
+  qt/usdsports/sendmultirow.h \
+  qt/usdsports/send.h \
+  qt/usdsports/addnewaddressdialog.h \
+  qt/usdsports/addnewcontactdialog.h \
+  qt/usdsports/requestdialog.h \
+  qt/usdsports/receivewidget.h \
+  qt/usdsports/tooltipmenu.h \
+  qt/usdsports/addresseswidget.h \
+  qt/usdsports/defaultdialog.h \
+  qt/usdsports/coldstakingwidget.h \
+  qt/usdsports/settings/settingsbackupwallet.h \
+  qt/usdsports/settings/settingsexportcsv.h \
+  qt/usdsports/settings/settingsbittoolwidget.h \
+  qt/usdsports/settings/settingsconsolewidget.h \
+  qt/usdsports/settings/settingsdisplayoptionswidget.h \
+  qt/usdsports/settings/settingsfaqwidget.h \
+  qt/usdsports/settings/settingsinformationwidget.h \
+  qt/usdsports/settings/settingsmainoptionswidget.h \
+  qt/usdsports/settings/settingsmultisenddialog.h \
+  qt/usdsports/settings/settingsmultisendwidget.h \
+  qt/usdsports/settings/settingssignmessagewidgets.h \
+  qt/usdsports/settings/settingswalletoptionswidget.h \
+  qt/usdsports/settings/settingswalletrepairwidget.h \
+  qt/usdsports/settings/settingswidget.h \
+  qt/usdsports/welcomecontentwidget.h \
+  qt/usdsports/splash.h
+
+RES_ICONS = \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/ic-transaction-received.png \
+  qt/res/icons/ic-transaction-mint.png \
+  qt/res/icons/ic-transaction-sent.png \
+  qt/res/icons/ic-transaction-staked.png \
+  qt/usdsports/res/img/bg-dashboard-banner.png \
+  qt/usdsports/res/img/bg-multi-number-dark.png \
+  qt/usdsports/res/img/ic-check-locked.png \
+  qt/usdsports/res/img/ic-nav-address.png \
+  qt/usdsports/res/img/ic-update.png \
+  qt/usdsports/res/img/bg-multi-number.png \
+  qt/usdsports/res/img/ic-check-mint-off.png \
+  qt/usdsports/res/img/ic-nav-cold-staking.png \
+  qt/usdsports/res/img/ic-nav-cold-staking-active.png \
+  qt/usdsports/res/img/ic-nav-dashboard-active.png \
+  qt/usdsports/res/img/ic-wallet-status-locked.png \
+  qt/usdsports/res/img/bg-splash.png \
+  qt/usdsports/res/img/ic-check-mint.png \
+  qt/usdsports/res/img/ic-nav-dashboard-hover.png \
+  qt/usdsports/res/img/ic-wallet-status-staking.png \
+  qt/usdsports/res/img/ic-check-peers-off.png \
+  qt/usdsports/res/img/ic-nav-dashboard.png \
+  qt/usdsports/res/img/ic-wallet-status-unlocked.png \
+  qt/usdsports/res/img/ic-check-peers.png \
+  qt/usdsports/res/img/ic-nav-master-active.png \
+  qt/usdsports/res/img/ic-watch-password-white.png \
+  qt/usdsports/res/img/bg-welcome-container.jpg \
+  qt/usdsports/res/img/bg-welcome-container.png \
+  qt/usdsports/res/img/bg-welcome-container@2x.png \
+  qt/usdsports/res/img/bg-welcome-container@3x.png \
+  qt/usdsports/res/img/ic-check-staking-off.png \
+  qt/usdsports/res/img/ic-nav-master-hover.png \
+  qt/usdsports/res/img/ic-watch-password.png \
+  qt/usdsports/res/img/bg-welcome.jpg \
+  qt/usdsports/res/img/bg-welcome.png \
+  qt/usdsports/res/img/ic-check-staking.png \
+  qt/usdsports/res/img/ic-nav-master.png \
+  qt/usdsports/res/img/img-dashboard-banner.jpg \
+  qt/usdsports/res/img/btn-radio-active.png \
+  qt/usdsports/res/img/ic-check-sync-off.png \
+  qt/usdsports/res/img/ic-nav-privacy-active.png \
+  qt/usdsports/res/img/img-empty-contacts.png \
+  qt/usdsports/res/img/btn-radio-off.png \
+  qt/usdsports/res/img/ic-nav-privacy-hover.png \
+  qt/usdsports/res/img/img-empty-dark-contacts.png \
+  qt/usdsports/res/img/ic-contact-arrow-down.png \
+  qt/usdsports/res/img/ic-contact-arrow-down-white.png \
+  qt/usdsports/res/img/ic-check-sync.png \
+  qt/usdsports/res/img/ic-check-faq.png \
+  qt/usdsports/res/img/ic-nav-privacy.png \
+  qt/usdsports/res/img/img-empty-dark-error.png \
+  qt/usdsports/res/img/ic-add-label.png \
+  qt/usdsports/res/img/ic-pending.png \
+  qt/usdsports/res/img/ic-check-theme-dark.png \
+  qt/usdsports/res/img/ic-nav-receive-active.png \
+  qt/usdsports/res/img/img-empty-dark-masternode.png \
+  qt/usdsports/res/img/ic-add-liliac.png \
+  qt/usdsports/res/img/ic-check-theme-light.png \
+  qt/usdsports/res/img/ic-nav-receive-hover.png \
+  qt/usdsports/res/img/img-empty-dark-multisend.png \
+  qt/usdsports/res/img/ic-add-purple.png \
+  qt/usdsports/res/img/ic-check-white.png \
+  qt/usdsports/res/img/ic-nav-receive.png \
+  qt/usdsports/res/img/img-empty-dark-peers.png \
+  qt/usdsports/res/img/ic-add.png \
+  qt/usdsports/res/img/ic-check.png \
+  qt/usdsports/res/img/ic-nav-send-active.png \
+  qt/usdsports/res/img/img-empty-dark-staking-off.png \
+  qt/usdsports/res/img/img-empty-dark-staking-on.png \
+  qt/usdsports/res/img/ic-address-book-grey.png \
+  qt/usdsports/res/img/ic-chevron-left.png \
+  qt/usdsports/res/img/ic-nav-send-hover.png \
+  qt/usdsports/res/img/img-empty-dark-transactions.png \
+  qt/usdsports/res/img/ic-address-book-white.png \
+  qt/usdsports/res/img/ic-chevron-right.png \
+  qt/usdsports/res/img/ic-nav-send.png \
+  qt/usdsports/res/img/img-empty-error.png \
+  qt/usdsports/res/img/ic-address-book.png \
+  qt/usdsports/res/img/ic-clear-liliac.png \
+  qt/usdsports/res/img/ic-nav-settings-active.png \
+  qt/usdsports/res/img/img-empty-masternode.png \
+  qt/usdsports/res/img/ic-address-send-white.png \
+  qt/usdsports/res/img/ic-clear-purple.png \
+  qt/usdsports/res/img/ic-nav-settings-hover.png \
+  qt/usdsports/res/img/img-empty-multisend.png \
+  qt/usdsports/res/img/ic-address-send.png \
+  qt/usdsports/res/img/ic-close-white.png \
+  qt/usdsports/res/img/ic-nav-settings.png \
+  qt/usdsports/res/img/img-empty-peers.png \
+  qt/usdsports/res/img/img-empty-privacy.png \
+  qt/usdsports/res/img/img-empty-privacy-dark.png \
+  qt/usdsports/res/img/ic-arrow-drop-down-white.png \
+  qt/usdsports/res/img/ic-close.png \
+  qt/usdsports/res/img/ic-radio-liliac-on.png \
+  qt/usdsports/res/img/img-empty-staking-off.png \
+  qt/usdsports/res/img/ic-arrow-drop-down.png \
+  qt/usdsports/res/img/ic-coin-usdsp.png \
+  qt/usdsports/res/img/ic-receive-off.png \
+  qt/usdsports/res/img/img-empty-staking-on.png \
+  qt/usdsports/res/img/ic-arrow-drop-up-white.png \
+  qt/usdsports/res/img/ic-receive-on.png \
+  qt/usdsports/res/img/img-empty-transactions.png \
+  qt/usdsports/res/img/ic-arrow-drop-up.png \
+  qt/usdsports/res/img/ic-received.png \
+  qt/usdsports/res/img/img-logo-usdsports.png \
+  qt/usdsports/res/img/ic-arrow-drop-white-down.png \
+  qt/usdsports/res/img/ic-combo-box.png \
+  qt/usdsports/res/img/ic-send.png \
+  qt/usdsports/res/img/img-logo-usdsports@2x.png \
+  qt/usdsports/res/img/ic-arrow-purple-down.png \
+  qt/usdsports/res/img/ic-connect.png \
+  qt/usdsports/res/img/ic-submenu-lock.png \
+  qt/usdsports/res/img/img-logo-usdsports@3x.png \
+  qt/usdsports/res/img/img-logo-usdsports.png \
+  qt/usdsports/res/img/ic-arrow-right-white.png \
+  qt/usdsports/res/img/ic-arrow-left-white.png \
+  qt/usdsports/res/img/ic-arrow-left.png \
+  qt/usdsports/res/img/ic-copy-liliac.png \
+  qt/usdsports/res/img/ic-submenu-staking.png \
+  qt/usdsports/res/img/img-nav-logo-usdsports.png \
+  qt/usdsports/res/img/ic-arrow-right.png \
+  qt/usdsports/res/img/ic-copy.png \
+  qt/usdsports/res/img/ic-copy-big.png \
+  qt/usdsports/res/img/ic-copy-big-white.png \
+  qt/usdsports/res/img/ic-submenu-unlock.png \
+  qt/usdsports/res/img/img-nav-logo.png \
+  qt/usdsports/res/img/ic-arrow-white-left.png \
+  qt/usdsports/res/img/ic-exit.png \
+  qt/usdsports/res/img/ic-switch-liliac-on.png \
+  qt/usdsports/res/img/img-nav-logo.png \
+  qt/usdsports/res/img/ic-arrow-white-right.png \
+  qt/usdsports/res/img/ic-expand.png \
+  qt/usdsports/res/img/ic-switch-off.png \
+  qt/usdsports/res/img/img-qr-test-big.png \
+  qt/usdsports/res/img/ic-check-active.png \
+  qt/usdsports/res/img/ic-folder.png \
+  qt/usdsports/res/img/ic-switch-on.png \
+  qt/usdsports/res/img/img-qr-test.png \
+  qt/usdsports/res/img/ic-check-box.png \
+  qt/usdsports/res/img/ic-check-box-dark-active.png \
+  qt/usdsports/res/img/ic-check-box-indeterminate.png \
+  qt/usdsports/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/usdsports/res/img/ic-label-liliac.png \
+  qt/usdsports/res/img/ic-transaction-warning.png \
+  qt/usdsports/res/img/ic-transaction-mint.png \
+  qt/usdsports/res/img/ic-transaction-mint-inactive.png \
+  qt/usdsports/res/img/ic-check-cold-staking.png \
+  qt/usdsports/res/img/ic-check-cold-staking-off.png \
+  qt/usdsports/res/img/ic-check-cold-staking-enabled.png \
+  qt/usdsports/res/img/dark/ic-transaction-cs-contract.png \
+  qt/usdsports/res/img/dark/ic-transaction-cs-contract-inactive.png \
+  qt/usdsports/res/img/img-qr.png \
+  qt/usdsports/res/img/ic-check-connect-off.png \
+  qt/usdsports/res/img/ic-check-tor-off.png \
+  qt/usdsports/res/img/ic-check-tor.png \
+  qt/usdsports/res/img/ic-label.png \
+  qt/usdsports/res/img/ic-transaction-received.png \
+  qt/usdsports/res/img/dark/ic-transaction-received.png \
+  qt/usdsports/res/img/dark/ic-transaction-warning.png \
+  qt/usdsports/res/img/dark/ic-transaction-mint.png \
+  qt/usdsports/res/img/dark/ic-transaction-mint-inactive.png \
+  qt/usdsports/res/img/ic-transaction-received-inactive.png \
+  qt/usdsports/res/img/dark/ic-transaction-received-inactive.png \
+  qt/usdsports/res/img/img-welcome-step1.png \
+  qt/usdsports/res/img/ic-check-connect.png \
+  qt/usdsports/res/img/ic-menu-hover.png \
+  qt/usdsports/res/img/ic-transaction-sent.png \
+  qt/usdsports/res/img/ic-transaction-sent-inactive.png \
+  qt/usdsports/res/img/dark/ic-transaction-sent.png \
+  qt/usdsports/res/img/dark/ic-transaction-sent-inactive.png \
+  qt/usdsports/res/img/img-welcome-step2.png \
+  qt/usdsports/res/img/ic-check-dark.png \
+  qt/usdsports/res/img/ic-mint.png \
+  qt/usdsports/res/img/ic-transaction-staked.png \
+  qt/usdsports/res/img/ic-transaction-staked-inactive.png \
+  qt/usdsports/res/img/dark/ic-transaction-staked.png \
+  qt/usdsports/res/img/dark/ic-transaction-staked-inactive.png \
+  qt/usdsports/res/img/img-welcome-step3.png \
+  qt/usdsports/res/img/ic-check-liliac-on.png \
+  qt/usdsports/res/img/ic-nav-address-active.png \
+  qt/usdsports/res/img/ic-unlock-staking.png \
+  qt/usdsports/res/img/img-welcome-step4.png \
+  qt/usdsports/res/img/ic-check-locked-off.png \
+  qt/usdsports/res/img/ic-nav-address-hover.png \
+  qt/usdsports/res/img/ic-update-liliac.png \
+  qt/usdsports/res/img/ic-arrow-drop-down-purple.png \
+  qt/usdsports/res/img/ic-arrow-drop-up-purple.png \
+  qt/usdsports/res/img/ic-check-liliac-indeterminate.png \
+  qt/usdsports/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/usdsports/res/img/ic-transaction-stake-delegated.png \
+  qt/usdsports/res/img/ic-transaction-stake-delegated-inactive.png \
+  qt/usdsports/res/img/ic-transaction-stake-hot.png \
+  qt/usdsports/res/img/ic-transaction-stake-hot-inactive.png \
+  qt/usdsports/res/img/dark/ic-transaction-stake-hot.png \
+  qt/usdsports/res/img/dark/ic-transaction-stake-hot-inactive.png \
+  qt/usdsports/res/img/dark/ic-transaction-stake-delegated.png \
+  qt/usdsports/res/img/dark/ic-transaction-stake-delegated-inactive.png \
+  qt/usdsports/res/img/ic-transaction-cs-contract.png \
+  qt/usdsports/res/img/ic-transaction-cs-contract-inactive.png \
+  qt/usdsports/res/img/ic-check-box-indeterminate.png \
+  qt/usdsports/res/img/ani-loading-dark.gif \
+  qt/usdsports/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/usdsports/usdsportsgui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/usdsports/loadingdialog.cpp \
+  qt/usdsports/pwidget.cpp \
+  qt/usdsports/focuseddialog.cpp \
+  qt/usdsports/guitransactionsutils.cpp \
+  qt/usdsports/snackbar.cpp \
+  qt/usdsports/navmenuwidget.cpp \
+  qt/usdsports/lockunlock.cpp \
+  qt/usdsports/receivedialog.cpp \
+  qt/usdsports/furabstractlistitemdelegate.cpp \
+  qt/usdsports/txviewholder.cpp \
+  qt/usdsports/qtutils.cpp \
+  qt/usdsports/expandablebutton.cpp \
+  qt/usdsports/topbar.cpp \
+  qt/usdsports/txrow.cpp \
+  qt/usdsports/addressholder.cpp \
+  qt/usdsports/addressfilterproxymodel.cpp \
+  qt/usdsports/dashboardwidget.cpp \
+  qt/usdsports/addresslabelrow.cpp \
+  qt/usdsports/contactdropdownrow.cpp \
+  qt/usdsports/contactsdropdown.cpp \
+  qt/usdsports/optionbutton.cpp \
+  qt/usdsports/mninfodialog.cpp \
+  qt/usdsports/coldstakingmodel.cpp \
+  qt/usdsports/mnmodel.cpp \
+  qt/usdsports/masternodewizarddialog.cpp \
+  qt/usdsports/mnrow.cpp \
+  qt/usdsports/masternodeswidget.cpp \
+  qt/usdsports/myaddressrow.cpp \
+  qt/usdsports/csrow.cpp \
+  qt/usdsports/sendchangeaddressdialog.cpp \
+  qt/usdsports/sendconfirmdialog.cpp \
+  qt/usdsports/sendcustomfeedialog.cpp \
+  qt/usdsports/sendchangeaddressdialog.cpp \
+  qt/usdsports/sendmultirow.cpp \
+  qt/usdsports/send.cpp \
+  qt/usdsports/addnewaddressdialog.cpp \
+  qt/usdsports/addnewcontactdialog.cpp \
+  qt/usdsports/requestdialog.cpp \
+  qt/usdsports/receivewidget.cpp \
+  qt/usdsports/tooltipmenu.cpp \
+  qt/usdsports/addresseswidget.cpp \
+  qt/usdsports/defaultdialog.cpp \
+  qt/usdsports/coldstakingwidget.cpp \
+  qt/usdsports/settings/settingsbackupwallet.cpp \
+  qt/usdsports/settings/settingsexportcsv.cpp \
+  qt/usdsports/settings/settingsbittoolwidget.cpp \
+  qt/usdsports/settings/settingsconsolewidget.cpp \
+  qt/usdsports/settings/settingsdisplayoptionswidget.cpp \
+  qt/usdsports/settings/settingsfaqwidget.cpp \
+  qt/usdsports/settings/settingsinformationwidget.cpp \
+  qt/usdsports/settings/settingsmainoptionswidget.cpp \
+  qt/usdsports/settings/settingsmultisenddialog.cpp \
+  qt/usdsports/settings/settingsmultisendwidget.cpp \
+  qt/usdsports/settings/settingssignmessagewidgets.cpp \
+  qt/usdsports/settings/settingswalletoptionswidget.cpp \
+  qt/usdsports/settings/settingswalletrepairwidget.cpp \
+  qt/usdsports/settings/settingswidget.cpp \
+  qt/usdsports/welcomecontentwidget.cpp \
+  qt/usdsports/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png
+
+RES_CSS = \
+  qt/usdsports/res/css/style_dark.css \
+  qt/usdsports/res/css/style_light.css
+
+BITCOIN_RC = qt/res/usdsports-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_usdsports_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# usdsports-qt binary #
+qt_usdsports_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_usdsports_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_usdsports_qt_SOURCES = qt/usdsports.cpp
+if TARGET_DARWIN
+  qt_usdsports_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_usdsports_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_usdsports_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_usdsports_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_usdsports_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_usdsports_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBSAPLING) $(LIBRUSTZCASH) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_usdsports_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_usdsports_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/usdsportsstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/usdsportsstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/usdsports.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/usdsports_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name usdsports_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name usdsports $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_usdsports_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+usdsports_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_usdsports_qt_OBJECTS) qt/usdsports-qt$(EXEEXT) $(LIBBITCOINQT)
+
+usdsports_qt : qt/usdsports-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

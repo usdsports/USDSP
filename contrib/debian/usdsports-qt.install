@@ -1,0 +1,6 @@
+usr/local/bin/usdsports-qt usr/bin
+share/pixmaps/usdsports32.xpm usr/share/pixmaps
+share/pixmaps/usdsports16.xpm usr/share/pixmaps
+share/pixmaps/usdsports128.png usr/share/pixmaps
+debian/usdsports-qt.desktop usr/share/applications
+debian/usdsports-qt.protocol usr/share/kde4/services/

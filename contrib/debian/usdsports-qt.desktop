@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=USDSports
+Comment=USDSports P2P Cryptocurrency
+Comment[fr]=USDSports, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=USDSports, eşten eşe kriptografik sanal para birimi
+Exec=usdsports-qt %u
+Terminal=false
+Type=Application
+Icon=usdsports128
+MimeType=x-scheme-handler/usdsports;
+Categories=Office;Finance;
+StartupWMClass=USDSports-qt

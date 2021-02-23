@@ -1,0 +1,15 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=USDSports
+Comment=USDSports QT main network
+GenericName=USDSports Digital Currency QT client main network
+Exec=usdsports-core.qt %u
+Terminal=false
+Type=Application
+Icon=${SNAP}/share/pixmaps/usdsports.png
+MimeType=x-scheme-handler/usdsports;
+Categories=X-Office;X-Finance;
+Keywords=internet;usdsports;zusdsp;usdsp;core;wallet;qt;main;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
+Version=1.0

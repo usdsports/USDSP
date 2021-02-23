@@ -1,0 +1,28 @@
+
+#!/bin/sh
+
+# setup usdsports account, homedir etc
+
+set -e
+
+USDSPUSER="usdsports"
+USDSPHOME="/var/lib/usdsports"
+
+if [ "$1" = "configure" ]; then
+	# Add usdsports user/group - this will gracefully abort if the user already exists.
+	# A homedir is never created.
+	set +e
+	adduser --system --home "${USDSPHOME}" --no-create-home --group "${USDSPUSER}" 2>/dev/null
+	set -e
+
+	# If the homedir does not already exist, create it with proper
+	# ownership and permissions.
+	if [ ! -d "${USDSPHOME}" ]; then
+		mkdir -m 0750 -p "${USDSPHOME}"
+		chown "${USDSPUSER}:${USDSPUSER}" "${USDSPHOME}"
+	fi
+fi
+
+#DEBHELPER#
+
+exit 0
